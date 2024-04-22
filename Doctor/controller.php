@@ -16,13 +16,8 @@ function getDoctor()
 
             $res = mysqli_fetch_all($query_run, MYSQLI_ASSOC);
 
-            $data = [
-                'status' => 200,
-                'message' => 'Doctor Fetched Successfully',
-                'data' => $res
-            ];
             header('HTTP/1.0 200 Doctor Fetched Successfully');
-            return json_encode($data, JSON_PRETTY_PRINT);
+            return json_encode($res, JSON_PRETTY_PRINT);
 
         } else {
             $data = [

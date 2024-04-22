@@ -16,13 +16,12 @@ function getAppoinmentHistory()
 
             $res = mysqli_fetch_all($query_run, MYSQLI_ASSOC);
 
-            $data = [
-                'status' => 200,
-                'message' => 'Appoinment History Fetched Successfully',
-                'data' => $res
-            ];
+            foreach ($res as &$row) {
+                unset($row['doctor_id']);
+            }
+            
             header('HTTP/1.0 200 Appoinment History Fetched Successfully');
-            return json_encode($data, JSON_PRETTY_PRINT);
+            return json_encode($res, JSON_PRETTY_PRINT);
 
         } else {
             $data = [
